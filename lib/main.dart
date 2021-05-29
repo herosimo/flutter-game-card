@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:game_card/friends-list.dart';
 
 void main() => runApp(MaterialApp(
-  home: GameCard(),
-));
+      home: GameCard(),
+    ));
 
 class GameCard extends StatefulWidget {
   @override
@@ -11,9 +12,14 @@ class GameCard extends StatefulWidget {
 }
 
 class _GameCardState extends State<GameCard> {
-
   //Variabel gamelevel (digunakan untuk state)
   int gamelevel = 0;
+
+  //Fungsi saat tombol ditekan, akan memindah ke halaman friends-list
+  Future navigateToFriendsPage(context) async {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => FriendsList()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +50,6 @@ class _GameCardState extends State<GameCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-
             //Widget CircleAvatar untuk menampilkan image yang diambil dari folder assets
             Center(
               child: CircleAvatar(
@@ -67,7 +72,9 @@ class _GameCardState extends State<GameCard> {
                 letterSpacing: 2.0,
               ),
             ),
-            SizedBox(height: 10.0,),
+            SizedBox(
+              height: 10.0,
+            ),
 
             //Widget Text untuk menampilkan text statis isi nama
             Text(
@@ -79,7 +86,9 @@ class _GameCardState extends State<GameCard> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30.0,),
+            SizedBox(
+              height: 30.0,
+            ),
 
             //Widget Text untuk menampilkan text statis Game Level
             Text(
@@ -89,7 +98,9 @@ class _GameCardState extends State<GameCard> {
                 letterSpacing: 2.0,
               ),
             ),
-            SizedBox(height: 10.0,),
+            SizedBox(
+              height: 10.0,
+            ),
 
             //Widget statefull untuk menampilkan isi dari variabel gamelevel (state)
             Text(
@@ -101,17 +112,20 @@ class _GameCardState extends State<GameCard> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30.0,),
+            SizedBox(
+              height: 30.0,
+            ),
 
             Row(
               children: <Widget>[
-
                 //Widget Icon untuk menampilkan icon email
                 Icon(
                   Icons.email,
                   color: Colors.grey[400],
                 ),
-                SizedBox(width: 10.0,),
+                SizedBox(
+                  width: 10.0,
+                ),
 
                 //Widget Text untuk menampilkan isi email
                 Text(
@@ -124,6 +138,22 @@ class _GameCardState extends State<GameCard> {
                 ),
               ],
             ),
+
+            Divider(
+              height: 100.0,
+              color: Colors.grey,
+            ),
+
+            RaisedButton(
+              color: Colors.amberAccent[200],
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: Text('List Friends',
+                  style: TextStyle(color: Colors.black, fontSize: 18.0)),
+              onPressed: () {
+                //Pindah ke halaman friends list
+                navigateToFriendsPage(context);
+              },
+            )
           ],
         ),
       ),
